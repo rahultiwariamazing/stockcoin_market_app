@@ -54,6 +54,7 @@ android/app/release/
 secrets.local.json
 *.env
 *.env.local
+docs/
 
 # Keep example secrets for onboarding
 !secrets.local.example.json
