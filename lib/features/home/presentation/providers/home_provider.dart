@@ -32,6 +32,7 @@ class HoldingItem {
 
 class HomeState {
   final bool isLoading;
+  final double investedPortfolio;
   final double totalPortfolio;
   final List<HoldingItem> holdings;
   final String? error;
@@ -39,6 +40,7 @@ class HomeState {
 
   const HomeState({
     required this.isLoading,
+    required this.investedPortfolio,
     required this.totalPortfolio,
     required this.holdings,
     this.error,
@@ -48,6 +50,7 @@ class HomeState {
   factory HomeState.initial() {
     return const HomeState(
       isLoading: false,
+      investedPortfolio: 0,
       totalPortfolio: 0,
       holdings: [],
       error: null,
@@ -57,6 +60,7 @@ class HomeState {
 
   HomeState copyWith({
     bool? isLoading,
+    double? investedPortfolio,
     double? totalPortfolio,
     List<HoldingItem>? holdings,
     String? error,
@@ -64,6 +68,7 @@ class HomeState {
   }) {
     return HomeState(
       isLoading: isLoading ?? this.isLoading,
+      investedPortfolio: investedPortfolio ?? this.investedPortfolio,
       totalPortfolio: totalPortfolio ?? this.totalPortfolio,
       holdings: holdings ?? this.holdings,
       error: error,
@@ -106,6 +111,7 @@ class HomeNotifier extends StateNotifier<HomeState> {
 
         state = state.copyWith(
           isLoading: false,
+          investedPortfolio: summary.totalPortfolio,
           totalPortfolio: summary.totalPortfolio,
           holdings: mapped,
           error: null,
@@ -179,19 +185,69 @@ class HomeNotifier extends StateNotifier<HomeState> {
       }
     }
 
-    if (imageById.isEmpty) return;
+    final priceById = <String, double>{};
+    final marketByIdsResult = await _getMarketCryptosUseCase(ids: holdingIds);
+
+    marketByIdsResult.when(
+      success: (coins) {
+        for (final coin in coins) {
+          priceById[coin.id] = coin.currentPrice;
+        }
+      },
+      failure: (_) {},
+    );
+
+    if (priceById.length < holdingIds.length) {
+      final unresolvedBySymbol = {
+        for (final item in state.holdings)
+          if (!priceById.containsKey(item.id)) item.symbol.toLowerCase(): item.id,
+      };
+
+      for (var page = 1; page <= 5 && unresolvedBySymbol.isNotEmpty; page++) {
+        final fallbackResult = await _getMarketCryptosUseCase(page: page);
+
+        fallbackResult.when(
+          success: (coins) {
+            for (final coin in coins) {
+              final holdingId = unresolvedBySymbol[coin.symbol.toLowerCase()];
+              if (holdingId != null) {
+                priceById[holdingId] = coin.currentPrice;
+              }
+            }
+          },
+          failure: (_) {},
+        );
+
+        unresolvedBySymbol.removeWhere(
+          (_, holdingId) => priceById.containsKey(holdingId),
+        );
+      }
+    }
+
+    final updatedHoldings = state.holdings
+        .map((item) {
+          final currentPrice = priceById[item.id];
+          final currentValue = currentPrice == null ? item.value : item.qty * currentPrice;
+
+          return HoldingItem(
+            id: item.id,
+            name: item.name,
+            symbol: item.symbol,
+            image: imageById[item.id] ?? item.image,
+            qty: item.qty,
+            value: currentValue,
+          );
+        })
+        .toList();
+
+    final currentPortfolio = updatedHoldings.fold<double>(
+      0,
+      (sum, item) => sum + item.value,
+    );
 
     state = state.copyWith(
-      holdings: state.holdings
-          .map((item) => HoldingItem(
-                id: item.id,
-                name: item.name,
-                symbol: item.symbol,
-                image: imageById[item.id] ?? item.image,
-                qty: item.qty,
-                value: item.value,
-              ))
-          .toList(),
+      totalPortfolio: currentPortfolio,
+      holdings: updatedHoldings,
     );
   }
 }

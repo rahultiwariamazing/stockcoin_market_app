@@ -1,0 +1,43 @@
+# Groq Chat Completions API test
+# How to use:
+# 1) Export your key in terminal: export GROQ_API_KEY="your_key"
+# 2) Open this file in VS Code and use REST Client "Send Request"
+#    (or copy the request as curl)
+
+@baseUrl = https://api.groq.com/openai/v1/chat/completions
+@apiKey = ''
+
+### Basic check (your requested prompt)
+POST {{baseUrl}}
+Content-Type: application/json
+Authorization: Bearer {{apiKey}}
+
+{
+  "model": "llama-3.1-8b-instant",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Explain Bitcoin in simple terms"
+    }
+  ]
+}
+
+### JSON-mode style response test (matches app-like usage)
+POST {{baseUrl}}
+Content-Type: application/json
+Authorization: Bearer {{apiKey}}
+
+{
+  "model": "llama3-8b-8192",
+  "temperature": 0.4,
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a concise financial education assistant."
+    },
+    {
+      "role": "user",
+      "content": "Explain Bitcoin in simple terms and include one caution point."
+    }
+  ]
+}

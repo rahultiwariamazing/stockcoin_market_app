@@ -8,6 +8,7 @@ import '../../features/auth/presentation/login_screen.dart';
 import '../../features/navigation/presentation/main_tab_shell.dart';
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/crypto/presentation/crypto_list_screen.dart';
+import '../../features/news/presentation/news_screen.dart';
 import '../../features/insights/presentation/insights_chat_screen.dart';
 import '../../features/user/presentation/user_screen.dart';
 import '../../features/crypto/presentation/screens/crypto_details_screen.dart';
@@ -60,6 +61,14 @@ final GoRouter appRouter = GoRouter(
             GoRoute(
               path: '/market',
               builder: (context, state) => const CryptoListScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/news',
+              builder: (context, state) => const NewsScreen(),
             ),
           ],
         ),

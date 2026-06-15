@@ -46,6 +46,11 @@ class MainTabShell extends ConsumerWidget {
             label: 'Market',
           ),
           NavigationDestination(
+            icon: Icon(Icons.newspaper_outlined),
+            selectedIcon: Icon(Icons.newspaper),
+            label: 'News',
+          ),
+          NavigationDestination(
             icon: Icon(Icons.auto_awesome_outlined),
             selectedIcon: Icon(Icons.auto_awesome),
             label: 'Insights',
