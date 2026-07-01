@@ -1,172 +1,172 @@
 # 🚀 CryptoInsight
 
-A Flutter-based cryptocurrency portfolio tracking application that helps users monitor market trends, simulate crypto trading, analyze portfolio performance, and receive AI-powered market insights.
+An AI-powered cryptocurrency portfolio tracking and market intelligence application built with Flutter.
+
+CryptoInsight helps users monitor cryptocurrency markets, simulate trading strategies, track portfolio performance, visualize price trends, and receive AI-generated investment insights through an intelligent chat-based assistant.
 
 ---
 
-## 📱 Overview
+## 📖 Overview
 
-StockCoin Market App provides a clean and modern cryptocurrency tracking experience. Users can browse live crypto market data, simulate buy and sell transactions, track portfolio performance, and interact with AI-powered insights for informed decision-making.
+CryptoInsight delivers a modern cryptocurrency analytics experience by combining real-time market tracking, portfolio simulation, interactive charts, and AI-assisted decision support into a single mobile application.
 
-The application is designed using a feature-based architecture with a strong separation between UI, business logic, repositories, and services.
+The application is designed using a scalable feature-based architecture with a clear separation between presentation, business logic, repositories, and services, making it easy to maintain and extend.
 
 ---
 
 ## ✨ Features
 
-### 📊 Market Tracking
-- Real-time cryptocurrency market data
-- CoinGecko API integration
-- Search functionality
-- Pagination support
-- Market ranking and pricing information
+### 📊 Crypto Market Tracking
 
-### 💰 Portfolio Management
+- Live cryptocurrency market data
+- CoinGecko API integration
+- Market rankings and pricing insights
+- Coin search functionality
+- Infinite scrolling and pagination
+- Detailed market metrics
+
+### 💼 Portfolio Management
+
 - Buy crypto simulation
 - Sell crypto simulation
-- Portfolio holdings tracking
-- Investment value tracking
-- Profit/Loss calculations
-- Ownership validation
+- Portfolio holdings management
+- Investment tracking
+- Profit & Loss calculations
+- Ownership validation before selling
+- Portfolio performance dashboard
 
-### 📈 Price Charts
-- 1 Day price trend
-- 7 Day price trend
-- 1 Month price trend
-- Interactive chart visualization
+### 📈 Advanced Price Charts
 
-### 🤖 AI-Powered Insights
-- AI-generated crypto analysis
-- Market sentiment insights
-- Investment guidance
+- 24-Hour Market Trends
+- 7-Day Price History
+- 30-Day Price History
+- Interactive chart visualizations
+- Historical performance tracking
+
+### 🤖 AI-Powered Market Intelligence
+
+- AI-generated cryptocurrency analysis
+- Market sentiment summaries
+- Risk and opportunity insights
+- Educational investment guidance
+- Real-time AI recommendations
 - Groq AI integration
 
-### 💬 AI Assistant Chat
-- Dedicated AI Insights screen
-- Interactive chat experience
-- Suggested prompts/chips
+### 💬 AI Assistant
+
+- Dedicated AI chat experience
+- Context-aware crypto discussions
+- Suggested prompts and quick actions
 - Typing indicators
-- Auto-scroll support
-- Safety filtering for harmful content
+- Auto-scroll conversations
+- Safety filtering and content moderation
 
 ### 🎨 Premium User Experience
+
 - Buy/Sell particle animations
-- Animated portfolio badge updates
-- Smooth navigation
-- User-friendly error handling
+- Animated portfolio updates
 - Responsive layouts
+- Smooth navigation
+- User-friendly feedback messages
+- Graceful error handling
 
 ### ✅ Validation & Safety
+
 - Quantity validation
-- Ownership checks
+- Portfolio ownership checks
 - Sell quantity protection
 - Input validation
-- AI content moderation
+- Safe AI content generation
+- Error recovery mechanisms
 
 ---
 
 ## 🏗️ Architecture
 
-Current Architecture:
+### Current Architecture
 
 ```text
-UI
-↓
+Presentation Layer
+        ↓
 Providers
-↓
+        ↓
 Repositories
-↓
+        ↓
 Services
-↓
-API / Local Storage
+        ↓
+External APIs / Local Storage
 ```
 
-Target Architecture:
+### Target Architecture
 
 ```text
-UI
-↓
+Presentation Layer
+        ↓
 Providers
-↓
+        ↓
 Use Cases
-↓
+        ↓
 Repositories
-↓
+        ↓
 Services
-↓
-API / Local Storage
+        ↓
+External APIs / Local Storage
 ```
 
-Architecture Style:
+### Architectural Principles
 
-- Feature-based structure
-- Provider state management
-- Repository pattern
-- Service layer abstraction
-- Typed error handling
-- Local persistence support
+- Feature-Based Architecture
+- Provider State Management
+- Repository Pattern
+- Service Layer Abstraction
+- Typed Error Handling
+- Modular Design
+- Scalable Code Organization
 
 ---
 
-## 📱 Screens
+## 📱 Application Modules
 
-### 🔐 Login Screen
-- Form validation
-- Simulated authentication flow
-- User access management
+### 🔐 Authentication
 
-### 🏠 Dashboard
-- Portfolio summary
+- Login flow
+- Session handling
+- Access control
+- User onboarding preparation
+
+### 🏠 Portfolio Dashboard
+
+- Portfolio valuation
 - Holdings overview
-- Portfolio value tracking
+- Investment summary
+- Performance tracking
 
-### 📈 Market Screen
+### 📈 Market Explorer
+
 - Cryptocurrency listings
+- Market data
 - Search functionality
-- Pagination
-- Market metrics
+- Pagination support
 
-### 📄 Crypto Details Screen
+### 📄 Coin Details
+
 - Coin information
-- Interactive charts
-- AI insights
+- Historical charting
+- AI-powered insights
 - Buy/Sell simulation
 
-### 🤖 AI Insights Screen
-- AI-powered crypto assistant
-- Chat interface
-- Suggested prompts
-- Intelligent responses
+### 🤖 AI Insights
 
-### 👤 User Screen
-- User-related settings
-- Application information
+- AI crypto assistant
+- Market analysis
+- Educational guidance
+- Intelligent recommendations
 
----
+### 👤 Profile & Settings
 
-## 🛠️ Technology Stack
-
-### Frontend
-- Flutter
-- Dart
-
-### State Management
-- Riverpod
-
-### Networking
-- Dio
-
-### Local Storage
-- Hive
-
-### APIs
-- CoinGecko API
-- Groq AI API
-
-### Architecture
-- Feature-Based Architecture
-- Repository Pattern
-- Provider Pattern
+- User preferences
+- App information
+- Future account management support
 
 ---
 
@@ -197,6 +197,10 @@ lib/
 │   └── widgets/
 │
 └── main.dart
+
+docs/
+├── PROJECT_DETAILS.md
+└── architecture/
 ```
 
 ---
@@ -206,22 +210,24 @@ lib/
 ```text
 Login
 ↓
-Dashboard
+Portfolio Dashboard
 ↓
-Market
+Market Explorer
 ↓
-Crypto Details
+Coin Details
 ↓
 Buy / Sell Simulation
 ↓
 Portfolio Update
 ↓
 AI Insights
+↓
+Investment Analysis
 ```
 
 ---
 
-## 📡 APIs Used
+## 🌐 External Integrations
 
 ### CoinGecko API
 
@@ -229,10 +235,10 @@ Used for:
 
 - Market listings
 - Cryptocurrency pricing
-- Market data
-- Historical charts
+- Historical market data
+- Price chart generation
 
-Endpoints:
+Key Endpoints:
 
 ```text
 GET /coins/markets
@@ -243,9 +249,10 @@ GET /coins/{id}/market_chart
 
 Used for:
 
-- Crypto insights
-- AI recommendations
-- AI chat assistant
+- Market intelligence
+- AI-generated analysis
+- Investment insights
+- Conversational crypto assistant
 
 Model:
 
@@ -255,82 +262,152 @@ llama-3.1-8b-instant
 
 ---
 
-## ⚡ Key Highlights
+## 🛠 Technology Stack
 
-- Real-time crypto market tracking
-- Portfolio simulation engine
-- AI-powered investment insights
-- Interactive chat assistant
-- Advanced animations
-- User-friendly validation
-- Typed error handling
-- Clean architecture approach
+### Mobile Development
+
+- Flutter
+- Dart
+
+### State Management
+
+- Riverpod
+
+### Networking
+
+- Dio
+
+### Local Storage
+
+- Hive
+
+### APIs
+
+- CoinGecko API
+- Groq AI API
+
+### Architecture
+
+- Feature-Based Architecture
+- Repository Pattern
+- Provider Pattern
 
 ---
 
-## ✅ Current Status
+## 📊 Key Highlights
+
+✅ Real-time crypto market tracking
+
+✅ Portfolio simulation engine
+
+✅ AI-powered investment insights
+
+✅ Interactive AI chat assistant
+
+✅ Advanced chart visualizations
+
+✅ Premium animations
+
+✅ Typed error handling
+
+✅ Clean and scalable architecture
+
+✅ Responsive mobile experience
+
+✅ Extensible code structure
+
+---
+
+## 🚧 Project Status
 
 ### Completed
 
-- Crypto Market Listing
-- Search Functionality
+- Cryptocurrency Market Listing
+- Coin Search
 - Pagination
 - Portfolio Dashboard
 - Buy/Sell Simulation
-- AI Crypto Insights
-- AI Chat Assistant
-- Quantity Validation
+- AI Insights
+- AI Assistant Chat
 - Interactive Charts
-- Local Portfolio Storage
-- Error Management
+- Portfolio Storage
+- Validation Layer
+- Error Handling
 - Premium Animations
 
 ### In Progress
 
 - Complete Domain Layer
 - Use Case Layer
-- Enhanced Testing
+- Enhanced Testing Coverage
 
 ### Planned
 
 - Real Authentication
-- Offline Market Cache
-- Session Persistence
-- Improved AI Moderation
-- Integration Testing
+- Offline Market Caching
+- Session Synchronization
+- Enhanced AI Moderation
 - Analytics & Monitoring
+- Performance Optimization
 
 ---
 
 ## ⚠️ Known Limitations
 
 - Authentication is currently simulated
-- Offline market cache is incomplete
-- Domain/use-case layer migration is in progress
+- Offline caching is partially implemented
+- Domain layer migration is ongoing
 - Automated test coverage is limited
-- AI key management requires production hardening
+- AI configuration requires production-grade secret management
 
 ---
 
 ## 🚀 Future Roadmap
 
 ### Phase 1
-- Fix routing inconsistencies
-- Move remaining logic into providers
-- Add widget and provider testing
-- Secure AI key management
+
+- Routing improvements
+- Provider optimization
+- Widget testing
+- Provider testing
+- Secure API key management
 
 ### Phase 2
-- Introduce complete domain layer
-- Add dependency injection improvements
-- Enhance logging and telemetry
-- Improve AI safety layer
+
+- Full Domain Layer
+- Dependency Injection enhancement
+- Structured logging
+- Telemetry support
+- AI safety improvements
 
 ### Phase 3
-- Real authentication backend
-- Offline sync support
-- Full integration testing
-- Enhanced portfolio analytics
+
+- Production authentication
+- Offline synchronization
+- Comprehensive integration testing
+- Advanced portfolio analytics
+- Multi-device support
+
+---
+
+## 📚 Documentation
+
+Detailed technical documentation is available in:
+
+```text
+docs/PROJECT_DETAILS.md
+```
+
+Documentation includes:
+
+- Architecture Overview
+- Module Breakdown
+- Data Flow
+- API Integration
+- State Management
+- Feature Analysis
+- Security Review
+- Future Roadmap
 
 ---
 
@@ -338,9 +415,13 @@ llama-3.1-8b-instant
 
 **Rahul Tiwari**
 
-**Mobile Architect | Cloud & AI Enthusiast**
+Mobile Application Architect | Cloud & AI Enthusiast
 
+**Technology Stack**
+
+```text
 .NET • MAUI • React Native • Flutter • Azure • Firebase • AI
+```
 
 ---
 
@@ -350,4 +431,4 @@ Copyright © 2026 Rahul Tiwari
 
 All Rights Reserved.
 
-Unauthorized use, reproduction, modification, or distribution of this software is prohibited without prior written permission from the copyright holder.
+Unauthorized use, modification, reproduction, distribution, or commercial exploitation of this software is prohibited without prior written permission from the copyright holder.
