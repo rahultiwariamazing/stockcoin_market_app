@@ -1,4 +1,4 @@
-# 🚀 StockCoin Market App
+# 🚀 CryptoInsight
 
 A Flutter-based cryptocurrency portfolio tracking application that helps users monitor market trends, simulate crypto trading, analyze portfolio performance, and receive AI-powered market insights.
 
